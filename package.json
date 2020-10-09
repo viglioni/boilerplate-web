@@ -10,6 +10,8 @@
     "test:dev": "jest --watch"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "next": "9.5.4",
     "ramda": "^0.27.1",
     "react": "16.13.1",
