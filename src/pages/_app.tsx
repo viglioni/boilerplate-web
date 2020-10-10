@@ -12,13 +12,7 @@ export default function MyApp(props: AppProps) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
-
-    const removeChild = pathOr(
-      identity,
-      ['parentElement', 'removeChild'],
-      jssStyles,
-    )
-    removeChild(jssStyles)
+    pathOr(identity, ['parentElement', 'removeChild'], jssStyles)(jssStyles)
   }, [])
   return (
     <React.Fragment>
