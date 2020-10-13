@@ -4,6 +4,8 @@ import { identity, pathOr } from 'ramda'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Head from 'next/head'
 import React, { useEffect } from 'react'
+
+import document from './_document';
 import theme from './theme/theme'
 
 export default function MyApp(props: AppProps) {
