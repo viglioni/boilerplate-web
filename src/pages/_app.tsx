@@ -1,32 +1,17 @@
-import { AppProps } from 'next/app'
-import { ThemeProvider } from '@material-ui/core/styles'
-import { identity, pathOr } from 'ramda'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import React from 'react'
+import App, { AppContext } from 'next/app'
+import { AppProps } from 'next/dist/next-server/lib/router/router'
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme/theme'
 
-export default function MyApp(props: AppProps) {
+function MyApp(props: AppProps) {
   const { Component, pageProps } = props
-
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side')
-    pathOr(identity, ['parentElement', 'removeChild'], jssStyles)(jssStyles)
-  }, [])
-
   return (
     <React.Fragment>
       <Head>
         <title>My page</title>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -40,3 +25,17 @@ export default function MyApp(props: AppProps) {
     </React.Fragment>
   )
 }
+
+// Only uncomment this method if you have blocking data requirements for
+// every single page in your application. This disables the ability to
+// perform automatic static optimization, causing every page in your app to
+// be server-side rendered.
+
+/* MyApp.getInitialProps = async (appContext: AppContext) => {
+ *   // calls page's `getInitialProps` and fills `appProps.pageProps`
+ *   const appProps = await App.getInitialProps(appContext)
+ *
+ *   return { ...appProps }
+ * } */
+
+export default MyApp
