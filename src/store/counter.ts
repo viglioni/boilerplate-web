@@ -1,15 +1,10 @@
-import { always, assoc, cond, equals, T } from "ramda"
-import { Dispatch } from "react"
+import { always, cond, equals, T } from "ramda"
 import { AnyAction, Reducer } from "redux"
+import { simpleAction, StateAction } from "../helpers/redux"
 
-export type CounterState = {
-  counter: number
-}
+export type CounterState = number
 
-const initalState: CounterState = {
-  counter: 0
-}
-
+const initalState: CounterState = 0
 
 export const counterActionTypes = {
   INCREASE: '[counter][increase]',
@@ -21,26 +16,11 @@ export const counterActionTypes = {
  * Actions
  */
 
-export const increaseCounter = (payload?: any) => async (dispatch: Dispatch<any>) => {
-  dispatch({
-    type: counterActionTypes.INCREASE,
-    payload
-  })
-}
+export const increaseCounter: StateAction = simpleAction(counterActionTypes.INCREASE)
 
-export const decreaseCounter = () => async (dispatch: Dispatch<any>) => {
-  dispatch({
-    type: counterActionTypes.DECREASE,
-    payload: null
-  })
-}
+export const decreaseCounter: StateAction = simpleAction(counterActionTypes.DECREASE)
 
-export const resetCounter = () => async (dispatch: Dispatch<any>) => {
-  dispatch({
-    type: counterActionTypes.RESET,
-    payload: null
-  })
-}
+export const resetCounter: StateAction = simpleAction(counterActionTypes.RESET)
 
 
 /*
@@ -48,15 +28,14 @@ export const resetCounter = () => async (dispatch: Dispatch<any>) => {
  */
 
 const reducer: Reducer = (state: CounterState = initalState, action: AnyAction) => {
-  const type = action.type as never
+  const actionType = action.type as never
   const { INCREASE, DECREASE, RESET } = counterActionTypes
-  const { counter } = state
   return cond([
-    [equals(INCREASE), () => assoc('counter', counter + 1, state)],
-    [equals(DECREASE), () => assoc('counter', counter - 1, state)],
-    [equals(RESET), () => assoc('counter', 0, state)],
+    [equals(INCREASE), always(state + 1)],
+    [equals(DECREASE), always(state - 1)],
+    [equals(RESET), always(0)],
     [T, always(state)]
-  ])(type)
+  ])(actionType)
 }
 
 export default reducer

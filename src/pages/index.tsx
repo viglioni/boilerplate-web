@@ -1,13 +1,15 @@
 import { Button, Grid, makeStyles, Typography } from '@material-ui/core'
 import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators, compose, Dispatch } from 'redux'
+import { bindActionCreators } from 'redux'
+import { connectToRedux, StateAction } from '../helpers/redux'
 import {
   CounterState,
   decreaseCounter,
   increaseCounter,
   resetCounter,
 } from '../store/counter'
+import { compose } from 'ramda'
 
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {
@@ -16,10 +18,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type HomeParams = {
-  increaseCounter: () => void
-  decreaseCounter: () => void
-  resetCounter: () => void
-} & CounterState
+  increaseCounter: StateAction
+  decreaseCounter: StateAction
+  resetCounter: StateAction
+  counter: CounterState
+}
 
 const Home = ({
   counter,
@@ -66,15 +69,7 @@ const Home = ({
   )
 }
 
-const mapStateToProps = (state: any) => {
-  const counter: CounterState = state.counter
-  return { counter: counter.counter }
-}
-
-const mapDispatchToProps = (dispatch: any) =>
-  bindActionCreators(
-    { increaseCounter, decreaseCounter, resetCounter },
-    dispatch,
-  )
-
-export default compose(connect(mapStateToProps, mapDispatchToProps))(Home)
+export default connectToRedux(
+  [{ stateName: 'counter', statePath: ['counter'] }],
+  { increaseCounter, decreaseCounter, resetCounter },
+)(Home)
