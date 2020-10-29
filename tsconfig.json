@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "removeComments": true,
+    "removeComments": false,
     "preserveConstEnums": true,
     "outDir": "dist",
     "sourceMap": true,

@@ -4,7 +4,7 @@ import { AppProps } from 'next/dist/next-server/lib/router/router'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import theme from './theme/theme'
+import theme from '../theme/theme'
 
 function MyApp(props: AppProps) {
   const { Component, pageProps } = props
