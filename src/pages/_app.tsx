@@ -1,12 +1,18 @@
 import React from 'react'
-import App, { AppContext } from 'next/app'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../theme/theme'
+import { Store } from 'redux'
+import { Provider } from 'react-redux'
+import { wrapper } from '../store'
 
-function MyApp(props: AppProps) {
+type MyAppProps = {
+  store: Store
+} & AppProps
+
+function MyApp(props: MyAppProps) {
   const { Component, pageProps } = props
   return (
     <React.Fragment>
@@ -38,4 +44,4 @@ function MyApp(props: AppProps) {
  *   return { ...appProps }
  * } */
 
-export default MyApp
+export default wrapper.withRedux(MyApp)
