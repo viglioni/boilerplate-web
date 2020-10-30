@@ -4,7 +4,8 @@
     "module": "commonjs",
     "outDir": "dist",
     "isolatedModules": false,
-    "noEmit": false
+    "noEmit": false,
+    "experimentalDecorators": true
   },
   "include": ["server/**/*.ts"]
 }

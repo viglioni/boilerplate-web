@@ -11,6 +11,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "target": "es5",
+    "experimentalDecorators": true,
     "lib": ["es6",
       "dom",
       "dom.iterable",
@@ -27,7 +28,8 @@
     "jsx": "preserve"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "server/**/*"
   ],
   "exclude": [
     "node_modules",
