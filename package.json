@@ -9,7 +9,7 @@
     "build": "npm run build:next && npm run build:server",
     "export": "npm run build && next export",
     "export:only": "next export",
-    "start": "NODE_ENV=production node dist/index.js",
+    "start": "NODE_ENV=production node dist/server/index.js",
     "test": "jest",
     "test:dev": "jest --watch"
   },
