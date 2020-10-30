@@ -10,6 +10,7 @@ import {
   resetCounter,
 } from '../store/counter'
 import { compose } from 'ramda'
+import { convertToString } from '../helpers/string'
 
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {
@@ -31,7 +32,6 @@ const Home = ({
   resetCounter,
 }: HomeParams): ReactElement => {
   const { buttonContainer } = useStyles()
-
   return (
     <Grid container direction="column" alignItems="center" justify="center">
       <Typography variant="h1"> Hello There </Typography>

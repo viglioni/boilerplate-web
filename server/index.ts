@@ -1,25 +1,25 @@
 import express from 'express';
 import next from 'next';
+import { always, identity, ifElse, or } from 'ramda';
+import { notEquals } from '../src/helpers/logic'
+import { concatAll } from '../src/helpers/string'
 
-const port = parseInt(process.env.PORT || '3000', 10);
-const isDev = process.env.NODE_ENV !== 'production';
+const env = process.env.NODE_ENV
+const port = parseInt(or(process.env.PORT, '3000') as string);
+const dev = notEquals(env, 'production')
+const app = next({ dev });
 
-const app = next({
-  dev: isDev,
-});
+
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-
-  server.get('/health-check', (_, res) => res.send('OK'));
-  server.get(['/_next/*', '/public/*'], (req, res) => handle(req, res));
+  server.get('/health-check', (_, res) => res.send("It's working!!!"));
   server.all('*', (req, res) => handle(req, res));
-
   server.listen(port, () => {
     console.log(
-      `> Server listening at http://localhost:${port} as ${isDev ? 'development' : process.env.NODE_ENV
-      }`,
+      concatAll("Server listening @ port ", port, " as ", ifElse(identity, always("dev"), always(env))(dev))
     );
   });
 });
+
