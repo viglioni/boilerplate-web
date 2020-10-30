@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common';
-import { NextController } from './next.controller'
-
+import { NextController } from './next.controller';
 
 @Module({
-  imports: [],
-  controllers: [NextController],
-  providers: [],
+  controllers: [NextController]
 })
-export class NextModule { }
+export class NextModule {}

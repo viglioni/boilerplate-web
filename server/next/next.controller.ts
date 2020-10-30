@@ -2,7 +2,8 @@ import { Controller, All, Req, Res } from '@nestjs/common';
 import { IncomingMessage, ServerResponse } from 'http';
 import { handle } from '../next.app';
 
-@Controller()
+
+@Controller('')
 export class NextController {
   constructor() { }
 

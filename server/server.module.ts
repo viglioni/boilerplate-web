@@ -6,7 +6,7 @@ import { NextModule } from './next/next.module';
 @Module({
   imports: [
     ApiModule,
-    NextModule // NextModule must be the LAST import!
+    NextModule, // NextModule must be the LAST import!
   ],
   controllers: [],
   providers: [],
