@@ -4,14 +4,43 @@
   },
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "browser": true,
+    "jest": true
   },
-  "extends": ["eslint:recommended", "prettier", "plugin:jest/recommended"], 
-  "plugins": ["prettier", "jest"],
+  "extends": ["plugin:react/recommended",
+              "plugin:@typescript-eslint/recommended",
+              "prettier/@typescript-eslint",
+              "plugin:prettier/recommended",
+              "plugin:jsx-control-statements/recommended",
+              "plugin:prettier/recommended",
+              "eslint:recommended",
+              "plugin:import/recommended",
+              "plugin:jsx-a11y/recommended",
+              "plugin:jest/recommended",
+              "prettier",
+              "prettier/react"], 
+  "plugins": [ "jest", "react", "import", "prettier", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": ["error"],
-    "no-console": "error",
-    "semi" : "off"
+    "no-console": "warn",
+    "semi" : "off",
+    "react/prop-types": ["off", {}],
+    "@typescript-eslint/explicit-module-boundary-types"  : "off"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".jsx", ".tsx", ".json"]
+      }
+    },
+    "import/extensions": [".js", ".ts", ".mjs", ".jsx", ".tsx"],
+    "react": {
+      "version": "detect"
+    }
   }
 }
 
