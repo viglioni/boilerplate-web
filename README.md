@@ -1,7 +1,7 @@
 # boilerplate-web
 
 ## About
-This is a full-stack boilerplate using [next](https://nextjs.org), [nest](https://docs.nestjs.com/) and TypeScript.
+This is a full-stack boilerplate using [next](https://nextjs.org), [nest](https://docs.nestjs.com/), [redux](https://redux.js.org/) and TypeScript.
 
 Linter, prettier, some husky hooks etc already configured.
 
@@ -54,3 +54,17 @@ start: run builded project
 test: run all unit tests
 
 test:dev: run tests and watch
+
+## Screenshots
+<img src="https://github.com/Viglioni/boilerplate-web/blob/updated-configs/screeshots/large-screen.png"
+     alt="screenshot"
+     height="250px"
+     align="left" />
+<img src="https://github.com/Viglioni/boilerplate-web/blob/updated-configs/screeshots/medium-screen.png"
+     alt="screenshot"
+     height="250px"
+     align="left" />
+     <img src="https://github.com/Viglioni/boilerplate-web/blob/updated-configs/screeshots/small-screen.png"
+     alt="screenshot"
+     height="250px"
+     align="left" />
