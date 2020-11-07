@@ -56,15 +56,15 @@ test: run all unit tests
 test:dev: run tests and watch
 
 ## Screenshots
-<img src="https://github.com/Viglioni/boilerplate-web/blob/updated-configs/screeshots/large-screen.png"
+<img src="https://github.com/Viglioni/boilerplate-web/blob/main/screenshots/large-screen.png"
      alt="screenshot"
      height="250px"
      align="left" />
-<img src="https://github.com/Viglioni/boilerplate-web/blob/updated-configs/screeshots/medium-screen.png"
+<img src="https://github.com/Viglioni/boilerplate-web/blob/main/screenshots/medium-screen.png"
      alt="screenshot"
      height="250px"
      align="left" />
-     <img src="https://github.com/Viglioni/boilerplate-web/blob/updated-configs/screeshots/small-screen.png"
+     <img src="https://github.com/Viglioni/boilerplate-web/blob/main/screenshots/small-screen.png"
      alt="screenshot"
      height="250px"
      align="left" />
