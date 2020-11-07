@@ -1,7 +1,8 @@
 import { Button, Grid, makeStyles, Typography } from '@material-ui/core'
-import React, { ReactElement } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import getConfig from 'next/config'
+import { path } from 'ramda'
+import React, { FC } from 'react'
+import { onMediaQuery } from '../helpers/breakpoints'
 import { connectToRedux, StateAction } from '../helpers/redux'
 import {
   CounterState,
@@ -9,12 +10,13 @@ import {
   increaseCounter,
   resetCounter,
 } from '../store/counter'
-import { compose } from 'ramda'
-import { convertToString } from '../helpers/string'
 
 const useStyles = makeStyles((theme) => ({
+  page: {
+    padding: theme.spacing(4),
+  },
   buttonContainer: {
-    margin: theme.spacing(3),
+    padding: theme.spacing(3),
   },
 }))
 
@@ -25,25 +27,33 @@ type HomeParams = {
   counter: CounterState
 }
 
-const Home = ({
+const Home: FC<HomeParams> = ({
   counter,
   increaseCounter,
   decreaseCounter,
   resetCounter,
-}: HomeParams): ReactElement => {
-  const { buttonContainer } = useStyles()
+}) => {
+  const { buttonContainer, page } = useStyles()
+  const env = path(['publicRuntimeConfig', 'enviroment'], getConfig())
   return (
-    <Grid container direction="column" alignItems="center" justify="center">
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+      className={page}
+    >
       <Typography variant="h1"> Hello There </Typography>
 
       <Typography variant="h3"> Counter is: {counter} </Typography>
       <Grid
         container
+        item
         direction="row"
         justify="center"
         alignItems="center"
-        spacing={5}
         className={buttonContainer}
+        spacing={1}
       >
         <Grid item>
           <Button variant="outlined" color="primary" onClick={increaseCounter}>
@@ -64,6 +74,13 @@ const Home = ({
             Reset
           </Button>
         </Grid>
+      </Grid>
+
+      <Grid>
+        <Typography>
+          You are seeing this on a {onMediaQuery('small', 'medium', 'large')}
+        </Typography>
+        <Typography>screen in {env} mode</Typography>
       </Grid>
     </Grid>
   )
