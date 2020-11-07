@@ -1,7 +1,6 @@
-import { Module } from '@nestjs/common';
-import { ApiModule } from './api/api.module';
-import { NextModule } from './next/next.module';
-
+import { Module } from '@nestjs/common'
+import { ApiModule } from './api/api.module'
+import { NextModule } from './next/next.module'
 
 @Module({
   imports: [
@@ -11,4 +10,4 @@ import { NextModule } from './next/next.module';
   controllers: [],
   providers: [],
 })
-export class ServerModule { }
+export class ServerModule {}
