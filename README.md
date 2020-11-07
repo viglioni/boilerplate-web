@@ -1,7 +1,7 @@
 # boilerplate-web
 
 ## About
-This is a full-stack boilerplate using [next](https://nextjs.org), [nest](https://docs.nestjs.com/), [redux](https://redux.js.org/) and TypeScript.
+This is a full-stack boilerplate using [react](https://reactjs.org/) , [next](https://nextjs.org), [nest](https://docs.nestjs.com/), [redux](https://redux.js.org/), [jest](https://jestjs.io/) and [TypeScript](https://www.typescriptlang.org/).
 
 Linter, prettier, some husky hooks etc already configured.
 
