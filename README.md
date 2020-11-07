@@ -8,6 +8,12 @@ Linter, prettier, some husky hooks etc already configured.
 ## nest (backend)
 Nest is used as our server. You can check it out at `./server/`
 
+### Endpoints:
+|endpoint | status | type | obs. |
+|------------|------------|-------------|--|
+| /api/health-check | 200 | string | from nest |
+| * | - | - | next will handle |
+
 ## Fronted
 It is in `./src` dir.
 
