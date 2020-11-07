@@ -78,9 +78,9 @@ const Home: FC<HomeParams> = ({
 
       <Grid>
         <Typography>
-          You are seeing this on a {onMediaQuery('small', 'medium', 'large')}
+          You are seeing this on a {onMediaQuery('small', 'medium', 'large')} screen
         </Typography>
-        <Typography>screen in {env} mode</Typography>
+        <Typography>in {env} mode</Typography>
       </Grid>
     </Grid>
   )
