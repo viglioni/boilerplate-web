@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 const { or } = require('ramda')
 
-const environment = or(process.env.CONFIG, 'dev')
+const environment = or(process.env.NODE_ENV, 'dev')
 
 const env = {
   dev: {
