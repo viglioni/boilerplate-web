@@ -1,7 +1,13 @@
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core'
+import {
+  Button,
+  Grid,
+  makeStyles,
+  Typography,
+  TextField,
+} from '@material-ui/core'
 import getConfig from 'next/config'
-import { path } from 'ramda'
-import React, { FC } from 'react'
+import { path, or } from 'ramda'
+import React, { FC, useState, useEffect } from 'react'
 import { onMediaQuery } from '../helpers/breakpoints'
 import { connectToRedux, StateAction } from '../helpers/redux'
 import {
@@ -10,6 +16,9 @@ import {
   increaseCounter,
   resetCounter,
 } from '../store/counter'
+import { useRouteAsState } from '../hooks/useRouteAsState'
+import { useDebounce } from '../hooks/useDebounce'
+import { concatAll } from '../helpers/string'
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -17,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonContainer: {
     padding: theme.spacing(3),
+  },
+  inputGrid: {
+    padding: theme.spacing(3),
+    margin: concatAll(theme.spacing(5), ' 0'),
   },
 }))
 
@@ -33,8 +46,17 @@ const Home: FC<HomeParams> = ({
   decreaseCounter,
   resetCounter,
 }) => {
-  const { buttonContainer, page } = useStyles()
+  const { buttonContainer, page, inputGrid } = useStyles()
   const env = path(['publicRuntimeConfig', 'enviroment'], getConfig())
+  const [test, setTest] = useRouteAsState('test', 10)
+  const [query, setQuery] = useState<any>(test)
+
+  const debounced = useDebounce(query, 500)
+
+  useEffect(() => {
+    setTest(or(debounced, ''))
+  }, [debounced])
+
   return (
     <Grid
       container
@@ -78,9 +100,34 @@ const Home: FC<HomeParams> = ({
 
       <Grid>
         <Typography>
-          You are seeing this on a {onMediaQuery('small', 'medium', 'large')} screen
+          You are seeing this on a {onMediaQuery('small', 'medium', 'large')}{' '}
+          screen
         </Typography>
         <Typography>in {env} mode</Typography>
+      </Grid>
+
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        spacing={3}
+        className={inputGrid}
+      >
+        <Typography variant="h6">
+          {`Set here the value of query parameter "test"`}
+        </Typography>
+
+        <form noValidate autoComplete="off">
+          <TextField
+            id="outlined-basic"
+            label="here"
+            variant="outlined"
+            onChange={({ target: { value } }) => {
+              setQuery(value)
+            }}
+          />
+        </form>
       </Grid>
     </Grid>
   )
